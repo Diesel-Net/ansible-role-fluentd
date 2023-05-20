@@ -1,0 +1,32 @@
+---
+kind: pipeline
+type: docker
+name: Build FluentD Image
+
+concurrency:
+  limit: 1
+
+clone:
+  depth: 1
+
+steps:
+  - name: docker build & push
+    image: plugins/docker
+    settings:
+      mirror: dockerhub.nexus.diesel.net
+      registry: docker.nexus.diesel.net
+      username: 
+        from_secret: nexus_user
+      password:
+        from_secret: nexus_pass
+      repo: docker.nexus.diesel.net/fluentd
+      tags:
+        - latest
+
+trigger:
+  branch:
+    - development
+    - stable
+  event:
+    - push
+...
