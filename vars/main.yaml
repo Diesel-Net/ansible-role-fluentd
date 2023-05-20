@@ -1,0 +1,10 @@
+app_name: fluentd
+docker_service: daemon
+
+# container names matching any one of these patterns, will instruct fluentd to drop the logs
+ignored_container_patterns:
+  - (^.*fluentd_.+$) # fluentd collector on each host e.g. "fluentd_development_collector.f2wm1ivqj5x9o2rqmzt4rh1hb.nngvjdjhy67s9w2gfnhtid99u"
+  - (^.*grafana-agent.+$) # grafana-agent scraper on each host e.g. "grafana-agent_development_scraper.f2wm1ivqj5x9o2rqmzt4rh1hb.nngvjdjhy67s9w2gfnhtid99u"
+  - (^drone-[\w]{20}$) # drone build-step containers e.g. "drone-eijUWwBU8QPyv2pXGnJ1" (only works for Drone Enterprise, as OSS version does not follow this naming standard)
+
+loki_job: docker-swarm
