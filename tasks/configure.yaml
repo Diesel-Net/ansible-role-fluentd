@@ -1,0 +1,12 @@
+- include_role:
+    name: application
+    tasks_from: make_config_dir
+
+- include_role:
+    name: application
+    tasks_from: make_data_dir
+
+- name: Render loki.conf to {{ config_dir }}/fluent.conf
+  template:
+    src: loki.conf
+    dest: '{{ config_dir }}/fluent.conf'
