@@ -1,4 +1,4 @@
 # defaults
-loki_url: https://loki.diesel.net.net
+loki_url: https://loki.diesel.net
 loki_username: loki
 loki_password: loki
