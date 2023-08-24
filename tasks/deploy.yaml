@@ -1,6 +1,8 @@
 - include_role:
     name: docker
     tasks_from: stack_deploy
+  vars:
+    app_name: fluentd
 
 # force reload
 - include_role:
@@ -8,3 +10,6 @@
     tasks_from: service_update
   vars:
     options: --force
+    app_name: fluentd
+    docker_service: daemon
+    

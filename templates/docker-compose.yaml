@@ -1,7 +1,7 @@
 version: '3.8'
 services: 
 
-  {{ docker_service }}:
+  daemon:
     image: {{ docker_registry }}/fluentd:latest
     volumes:
       - /etc/ssl/certs/ca-certificates.crt:/etc/ssl/certs/ca-certificates.crt
