@@ -1,12 +1,18 @@
 - include_role:
     name: application
     tasks_from: make_config_dir
+  vars:
+    app_name: fluentd
 
 - include_role:
     name: application
     tasks_from: make_data_dir
+  vars:
+    app_name: fluentd
 
 - name: Render loki.conf to {{ config_dir }}/fluent.conf
   template:
     src: loki.conf
     dest: '{{ config_dir }}/fluent.conf'
+  vars:
+    app_name: fluentd
