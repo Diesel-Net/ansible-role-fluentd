@@ -1,4 +1,4 @@
-FROM fluent/fluentd:v1.14.6-debian-1.0
+FROM fluent/fluentd:v1.16.3-debian-1.0
 USER root
 RUN ["gem", "install", "fluent-plugin-grafana-loki"]
 RUN ["gem", "install", "fluent-plugin-rewrite-tag-filter"]
