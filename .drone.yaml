@@ -10,7 +10,26 @@ clone:
   depth: 1
 
 steps:
-  - name: docker build & push
+
+  - name: docker build (${DRONE_BRANCH}-latest)
+    image: plugins/docker
+    settings:
+      mirror: dockerhub.nexus.diesel.net
+      registry: docker.nexus.diesel.net
+      username: 
+        from_secret: nexus_user
+      password:
+        from_secret: nexus_pass
+      repo: docker.nexus.diesel.net/fluentd
+      tags:
+        - ${DRONE_BRANCH}-latest
+    when:
+      event:
+        - push
+
+
+
+  - name: docker build (${DRONE_TAG})
     image: plugins/docker
     settings:
       mirror: dockerhub.nexus.diesel.net
@@ -22,6 +41,10 @@ steps:
       repo: docker.nexus.diesel.net/fluentd
       tags:
         - latest
+        - ${DRONE_TAG}
+    when:
+      event:
+        - tag
 
 trigger:
   branch:
@@ -29,4 +52,5 @@ trigger:
     - stable
   event:
     - push
+    - tag
 ...
