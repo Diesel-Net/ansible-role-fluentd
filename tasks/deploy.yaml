@@ -9,7 +9,7 @@
     name: docker
     tasks_from: service_update
   vars:
-    options: --force
+    opts: --force
     app_name: fluentd
     docker_service: daemon
     
